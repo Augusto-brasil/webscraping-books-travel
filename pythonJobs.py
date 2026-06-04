@@ -15,5 +15,8 @@ print(f'status code: {response.status_code}')
 soup = BeautifulSoup(response.text, 'lxml')
 jobs = soup.find_all('li', class_='col-xs-6 col-sm-4 col-md-3 col-lg-3')
 
-print(len(jobs))
-print(jobs[:3])
+# print(len(jobs))
+# print(jobs[:3])
+
+for job in jobs:
+    name = soup.find('h3', class_='')
