@@ -14,19 +14,19 @@ print(f'status code: {response.status_code}')
 soup = BeautifulSoup(response.text, 'lxml')
 books = soup.find_all('li', class_='col-xs-6 col-sm-4 col-md-3 col-lg-3')
 
+book_name = []
+book_price = []
 
-# for book in books:
-#     book_name = book.find('h3')
+for book in books:
+    n_tag = book.select_one('h3 a')
+    name = n_tag['title'] if book else 'inexistente'
+    book_name.append(name)
 
-#     if book_name:
-#         sel_book = book_name.find('a')['title']
-#         print(f'nome de Livros: {sel_book}\n')
+    # price = book.find('p', class_='price_color')
+    # if price:
+    #     p_book = price.get_text()
+for x in book_name:
+    print(x)
 
-for price in books:
-    book_price = price.find('p', class_='price_color')
-
-    if book_price:
-        books_price = book_price.get_text()
-        print(books_price[2:])
 
 
