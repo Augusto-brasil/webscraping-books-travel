@@ -2,11 +2,11 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-#1 - coeltando vagas de python
+# Coletando Livros de viagens
 
 url = 'https://books.toscrape.com/catalogue/category/books/travel_2/index.html'
 
-print('enviando requisiçao')
+print('enviando requisição')
 
 response = requests.get(url)
 
@@ -24,7 +24,7 @@ for book in books:
     book_name.append(name)
 
     price = book.find('p', class_='price_color')
-    p_book = price.get_text()[2:] if price else "zerado"
+    p_book = price.get_text().replace('£','') if price else "zerado"
     book_price.append(p_book)
     
 df_livros = pd.DataFrame()
