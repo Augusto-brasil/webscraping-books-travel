@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import pandas
 
 #1 - coeltando vagas de python
 
@@ -13,10 +12,12 @@ response = requests.get(url)
 print(f'status code: {response.status_code}')
 
 soup = BeautifulSoup(response.text, 'lxml')
-jobs = soup.find_all('li', class_='col-xs-6 col-sm-4 col-md-3 col-lg-3')
+books = soup.find_all('li', class_='col-xs-6 col-sm-4 col-md-3 col-lg-3')
 
-# print(len(jobs))
-# print(jobs[:3])
 
-for job in jobs:
-    name = soup.find('h3', class_='')
+for book in books:
+    book_name = book.find('h3')
+
+    if book_name:
+        sel_book = book_name.find('a')['title']
+        print(f'nome de Livros: {sel_book}\n')
