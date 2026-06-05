@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import pandas as pd
 
 #1 - coeltando vagas de python
 
@@ -25,10 +26,15 @@ for book in books:
     price = book.find('p', class_='price_color')
     p_book = price.get_text()[2:] if price else "zerado"
     book_price.append(p_book)
+    
+df_livros = pd.DataFrame()
+df_livros['Names'] = book_name
+df_livros['Prices'] = book_price
 
+df_livros.to_csv('livrosdeviagens.csv')
 
-for x_nome, Y_preço in zip(book_name, book_price):
-    print(f'nome: {x_nome} - preco:{Y_preço}')
+# for x_nome, Y_preço in zip(book_name, book_price):
+#     print(f'nome: {x_nome} - preco:{Y_preço}')
 
 
 
